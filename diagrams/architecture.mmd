@@ -1,0 +1,19 @@
+graph TD
+    subgraph AWS["AWS Cloud"]
+        APIGateway[API Gateway]
+        DDB[(DynamoDB)]
+        RDS[(RDS)]
+        S3[(S3)]
+        SQS[SQS Queue]
+        SNS[SNS Topic]
+        Kinesis[Kinesis]
+    end
+
+    Lambda --> APIGateway
+    APIGateway --> DDB
+    DDB --> RDS
+    RDS --> S3
+    S3 --> SQS
+    SQS --> SNS
+    SNS --> Kinesis
+    DDB -.->|metrics| CW[CloudWatch]
